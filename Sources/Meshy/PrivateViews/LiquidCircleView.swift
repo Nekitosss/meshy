@@ -26,14 +26,14 @@ struct LiquidCircleView: View {
     
     var body: some View {
         LiquidCircle(radians: radians)
-            .animation(.linear(duration: period))
-            .onReceive(trigger) { _ in
-                self.radians = AnimatableArray(LiquidCircleView.generateRadial(self.samples))
-            }.onAppear {
-                self.radians = AnimatableArray(LiquidCircleView.generateRadial(self.samples))
-            }.onDisappear {
-                self.cancellable?.cancel()
-            }
+            .onAnimationCompleted(for: radians, handler: launchAnimation)
+            .onAppear(perform: launchAnimation)
+    }
+    
+    private func launchAnimation() {
+        schedule(animation: .linear(duration: period)) {
+            self.radians = AnimatableArray(LiquidCircleView.generateRadial(self.samples))
+        }
     }
     
     static func generateRadial(_ count: Int = 6) -> [Double] {
