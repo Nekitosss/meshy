@@ -26,7 +26,36 @@ public struct MeshGradientView: View {
     
     private let backgroundGradientColors: [Color]
     
-    public init(samples: Int, period: TimeInterval, blob1Gradient: Gradient, blob2Gradient: Gradient, blob3Gradient: Gradient, backgroundGradientColors: [Color]) {
+    public static let defaultBlob1Gradient = Gradient(colors: [
+        Color(red: 230/255, green: 111/255, blue: 91/255),
+        Color(red: 228/255, green: 92/255, blue: 84/255)
+      ])
+    
+    public static let defaultBlob2Gradint = Gradient(colors: [
+        Color(red: 95/255, green: 161/255, blue: 213/255),
+        Color(red: 65/255, green: 125/255, blue: 177/255)
+      ])
+    
+    public static let defaultBlob3Gradient = Gradient(colors: [
+        Color(red: 242/255, green: 195/255, blue: 100/255),
+        Color(red: 238/255, green: 160/255, blue: 81/255)
+      ])
+    
+    public static let defaultBackgroundColors: [Color] = [
+        .red,
+        .orange,
+        .yellow,
+        .green,
+        .blue,
+        .purple
+      ]
+    
+    public init(samples: Int,
+                period: TimeInterval,
+                blob1Gradient: Gradient = defaultBlob1Gradient,
+                blob2Gradient: Gradient = defaultBlob2Gradint,
+                blob3Gradient: Gradient = defaultBlob3Gradient,
+                backgroundGradientColors: [Color] = defaultBackgroundColors) {
         
         self._samples = .init(initialValue: samples)
         self.blob1 = Self.randomizeInfo(samples: samples, size: 100)
@@ -38,31 +67,6 @@ public struct MeshGradientView: View {
         self.blob2Gradient = blob2Gradient
         self.blob3Gradient = blob3Gradient
         self.backgroundGradientColors = backgroundGradientColors
-    }
-    
-    public init(samples: Int, period: TimeInterval) {
-        self.init(samples: samples,
-                  period: period,
-                  blob1Gradient: Gradient(colors: [
-                    Color(red: 230/255, green: 111/255, blue: 91/255),
-                    Color(red: 228/255, green: 92/255, blue: 84/255)
-                  ]),
-                  blob2Gradient: Gradient(colors: [
-                    Color(red: 95/255, green: 161/255, blue: 213/255),
-                    Color(red: 65/255, green: 125/255, blue: 177/255)
-                  ]),
-                  blob3Gradient: Gradient(colors: [
-                    Color(red: 242/255, green: 195/255, blue: 100/255),
-                    Color(red: 238/255, green: 160/255, blue: 81/255)
-                  ]),
-                  backgroundGradientColors: [
-                    .red,
-                    .orange,
-                    .yellow,
-                    .green,
-                    .blue,
-                    .purple
-                  ])
     }
     
     public var body: some View {
