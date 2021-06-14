@@ -58,9 +58,9 @@ public struct MeshGradientView: View {
                 backgroundGradientColors: [Color] = defaultBackgroundColors) {
         
         self._samples = .init(initialValue: samples)
-        self.blob1 = Self.randomizeInfo(samples: samples, size: 100)
-        self.blob2 = Self.randomizeInfo(samples: samples, size: 100)
-        self.blob3 = Self.randomizeInfo(samples: samples, size: 100)
+        self._blob1 = .init(initialValue: Self.randomizeInfo(samples: samples, size: 100))
+        self._blob2 = .init(initialValue: Self.randomizeInfo(samples: samples, size: 100))
+        self._blob3 = .init(initialValue: Self.randomizeInfo(samples: samples, size: 100))
         
         self.period = period
         self.blob1Gradient = blob1Gradient
